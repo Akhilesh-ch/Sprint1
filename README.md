@@ -20,7 +20,7 @@ Ensure Oracle Database is running and you have created the "sprint1" user. The t
 
 Use the respective "CREATE TABLE" SQL statements to create the schemas before running the program.
 
-### 📁 Core Classes
+### Core Classes
 | Class Name      | Description                            |
 |-----------------|----------------------------------------|
 |  Mainapp.java   | Main class for Inserting into tables   | 
@@ -28,7 +28,7 @@ Use the respective "CREATE TABLE" SQL statements to create the schemas before ru
 |  Deletion.java  | Deletion class for Deleting fields     |
 |  Retrive.java   | Retrive class for Retriving the fields |
 
-### 📁 Model Classes
+### Model Classes
 These classes contain private fields, constructors, and **getters/setters**.
 
 -  Student.java
@@ -38,7 +38,7 @@ These classes contain private fields, constructors, and **getters/setters**.
 
 Each class maps directly to a table in Oracle DB and supports encapsulation.
 
-### 📁 DAO Classes
+### DAO Classes
 DAO classes handle all DB operations (Insert, Update, Delete, Retrieve):
 
 -  StudentDAO.java  
@@ -53,10 +53,10 @@ Each class contains (Example methods):
 -  update<Class>By<Field>()
 -  delete<Class>By<Field>()
 
-### 📁 Utility Classes
+### Utility Classes
 - "DBConnection.java" – handles Oracle DB connection using 'jdbc:oracle:thin:@localhost:1521:XE'.
 
-## ✅ Features
+### Features
 - Add, update, delete, and fetch records from Oracle DB.
 - Handles invalid date input using strict parsing via "LocalDate".
 - Validations and exception handling included.
