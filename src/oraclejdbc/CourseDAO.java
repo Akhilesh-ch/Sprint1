@@ -5,7 +5,7 @@ import java.util.*;
 
 public class CourseDAO {
 
-    public void insertCourse(Course c) throws SQLException {
+    public void insertCourse(Course c)  {
         String sql = "INSERT INTO Course (course_id, course_name, duration_months) VALUES (?, ?, ?)";
         try (
             Connection con = DBConnection.getConnection();
@@ -25,7 +25,7 @@ public class CourseDAO {
         updateField("course_name", name, id);
     }
 
-    public void updateDuration(int id, int duration) throws SQLException {
+    public void updateDuration(int id, int duration) {
         String sql = "UPDATE Course SET duration_months=? WHERE course_id=?";
         try (
             Connection con = DBConnection.getConnection();
@@ -40,7 +40,7 @@ public class CourseDAO {
         }
     }
 
-    private void updateField(String field, String value, int id) throws SQLException {
+    private void updateField(String field, String value, int id)  {
         String sql = "UPDATE Course SET " + field + "=? WHERE course_id=?";
         try (
             Connection con = DBConnection.getConnection();
@@ -55,7 +55,7 @@ public class CourseDAO {
         }
     }
 
-    public List<Course> getAllCourses() throws SQLException {
+    public List<Course> getAllCourses()  {
         List<Course> list = new ArrayList<>();
         String sql = "SELECT * FROM Course ORDER BY course_id";
         try (
@@ -89,7 +89,7 @@ public class CourseDAO {
     }
 
 
-    public List<Course> getCoursesByName(String name) throws SQLException {
+    public List<Course> getCoursesByName(String name) {
         List<Course> list = new ArrayList<>();
         String sql = "SELECT * FROM Course WHERE course_name = ?";
         try (
@@ -108,7 +108,7 @@ public class CourseDAO {
         return list;
     }
 
-    public List<Course> getCoursesByDuration(int duration) throws SQLException {
+    public List<Course> getCoursesByDuration(int duration)  {
         List<Course> list = new ArrayList<>();
         String sql = "SELECT * FROM Course WHERE duration_months = ?";
         try (
@@ -127,7 +127,7 @@ public class CourseDAO {
         return list;
     }
 
-    public void deleteCourse(int id) throws SQLException {
+    public void deleteCourse(int id)  {
         String sql = "DELETE FROM Course WHERE course_id = ?";
         try (
             Connection con = DBConnection.getConnection();
@@ -142,7 +142,7 @@ public class CourseDAO {
         }
     }
 
-    public void deleteCourseByName(String name) throws SQLException {
+    public void deleteCourseByName(String name) {
         String sql = "DELETE FROM Course WHERE course_name = ?";
         try (
             Connection con = DBConnection.getConnection();
@@ -157,7 +157,7 @@ public class CourseDAO {
         }
     }
 
-    public void deleteCourseByDuration(int duration) throws SQLException {
+    public void deleteCourseByDuration(int duration) {
         String sql = "DELETE FROM Course WHERE duration_months = ?";
         try (
             Connection con = DBConnection.getConnection();
@@ -171,7 +171,7 @@ public class CourseDAO {
             System.out.println("Error deleting course Record: " + e.getMessage());
         }
     }
-    public void deleteAllCourses() throws SQLException {
+    public void deleteAllCourses(){
         String sql = "DELETE FROM Course";
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
