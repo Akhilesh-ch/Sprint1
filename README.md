@@ -61,3 +61,22 @@ Each class contains (Example methods):
 - Handles invalid date input using strict parsing via "LocalDate".
 - Validations and exception handling included.
 - Structured menu-driven interface for CRUD operations.
+
+### Java I/O & Collections
+-This project supports file-based read/write functionality for Application records using Java I/O and Collections:
+-When a new application is added via Java (Mainapp.java), the record is appended to applications.txt.
+-You can export all database-stored applications to applications.txt.
+-Collections like List<Application> are used to manage records during read/write operations.
+-Helps simulate mock records and maintain a backup outside the database.
+File Functions:
+Operation	Description
+Append	Automatically appends new applications to applications.txt after DB insert.
+Export	Exports all DB application records to file with full overwrite.
+Import (optional)	Reads from the file and inserts into DB (to simulate bulk upload).
+
+File path used: applications.txt (auto-created in project root if not present)
+-Example File Format (applications.txt)
+ -1,1,2,2025-06-19,Pending
+ -2,1,2,2025-06-19,Pending
+ -3,2,1,2025-06-19,Pending
+ -4,2,2,2025-06-19,Pending
