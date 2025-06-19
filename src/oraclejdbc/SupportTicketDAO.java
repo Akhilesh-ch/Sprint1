@@ -5,7 +5,7 @@ import java.util.*;
 
 public class SupportTicketDAO {
 
-    public void insertTicket(SupportTicket ticket) throws SQLException {
+    public void insertTicket(SupportTicket ticket)  {
         String sql = "INSERT INTO SupportTicket (ticket_id, student_id, issue, status) VALUES (?, ?, ?, ?)";
         try (
             Connection con = DBConnection.getConnection();
@@ -22,7 +22,7 @@ public class SupportTicketDAO {
         }
     }
 
-    public void updateTicketStatus(int ticketId, String newStatus) throws SQLException {
+    public void updateTicketStatus(int ticketId, String newStatus)  {
         String sql = "UPDATE SupportTicket SET status = ? WHERE ticket_id = ?";
         try (
             Connection con = DBConnection.getConnection();
@@ -37,7 +37,7 @@ public class SupportTicketDAO {
         }
     }
 
-    public List<SupportTicket> getAllTickets() throws SQLException {
+    public List<SupportTicket> getAllTickets()  {
         List<SupportTicket> list = new ArrayList<>();
         String sql = "SELECT * FROM SupportTicket ORDER BY ticket_id";
         try (
@@ -60,7 +60,7 @@ public class SupportTicketDAO {
         return list;
     }
 
-    public SupportTicket getTicketById(int id) throws SQLException {
+    public SupportTicket getTicketById(int id) {
         String sql = "SELECT * FROM SupportTicket WHERE ticket_id = ?";
         try (
             Connection con = DBConnection.getConnection();
@@ -83,7 +83,7 @@ public class SupportTicketDAO {
         return null;
     }
 
-    public List<SupportTicket> getTicketsByStudentId(int sid) throws SQLException {
+    public List<SupportTicket> getTicketsByStudentId(int sid)  {
         List<SupportTicket> list = new ArrayList<>();
         String sql = "SELECT * FROM SupportTicket WHERE student_id = ?";
         try (
@@ -107,7 +107,7 @@ public class SupportTicketDAO {
         return list;
     }
 
-    public List<SupportTicket> getTicketsByStatus(String status) throws SQLException {
+    public List<SupportTicket> getTicketsByStatus(String status) {
         List<SupportTicket> list = new ArrayList<>();
         String sql = "SELECT * FROM SupportTicket WHERE LOWER(status) = LOWER(?)";
         try (
@@ -131,7 +131,7 @@ public class SupportTicketDAO {
         return list;
     }
 
-    public void deleteTicket(int id) throws SQLException {
+    public void deleteTicket(int id)  {
         String sql = "DELETE FROM SupportTicket WHERE ticket_id = ?";
         try (
             Connection con = DBConnection.getConnection();
@@ -145,7 +145,7 @@ public class SupportTicketDAO {
         }
     }
 
-    public void deleteTicketByStudentId(int sid) throws SQLException {
+    public void deleteTicketByStudentId(int sid){
         String sql = "DELETE FROM SupportTicket WHERE student_id = ?";
         try (
             Connection con = DBConnection.getConnection();
@@ -160,7 +160,7 @@ public class SupportTicketDAO {
         }
     }
 
-    public void deleteTicketByStatus(String status) throws SQLException {
+    public void deleteTicketByStatus(String status)  {
         String sql = "DELETE FROM SupportTicket WHERE LOWER(status) = LOWER(?)";
         try (
             Connection con = DBConnection.getConnection();
@@ -174,7 +174,7 @@ public class SupportTicketDAO {
             System.out.println("Failed Deleting SupportTicket Record: " + e.getMessage());
         }
     }
-    public void deleteAllTickets() throws SQLException {
+    public void deleteAllTickets() {
         String sql = "DELETE FROM SupportTicket";
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
