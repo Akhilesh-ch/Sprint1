@@ -1,6 +1,7 @@
 package oraclejdbc;
 
 import java.sql.*;
+import java.io.*;
 import java.util.*;
 import java.sql.Date;
 
@@ -30,6 +31,34 @@ public class ApplicationDAO {
             System.out.println("Failed to insert application: " + e.getMessage());
         }
     }
+    public void exportApplicationsToFile(String filePath) {
+        try {
+            List<Application> apps = getAllApplications();
+            if (apps.isEmpty()) {
+                System.out.println("No application records found in the database.");
+                return;
+            }
+
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+                for (Application app : apps) {
+                    String line = app.getApplicationId() + "," +
+                                  app.getStudentId() + "," +
+                                  app.getCourseId() + "," +
+                                  app.getDate() + "," +
+                                  app.getStatus();
+                    writer.write(line);
+                    writer.newLine();
+                    System.out.println(line); // ✅ Also print each line
+                }
+                System.out.println("Exported applications to file: " + filePath);
+            }
+        } catch (Exception e) {
+            System.out.println("Error exporting applications: " + e.getMessage());
+        }
+    }
+
+
+
 
     public boolean exists(int studentId, int courseId) {
         String sql = "SELECT 1 FROM Application WHERE student_id = ? AND course_id = ?";
