@@ -7,7 +7,7 @@ import java.sql.Date;
 
 public class ApplicationDAO {
 
-    public void insertApplication(Application a) throws SQLException {
+    public void insertApplication(Application a) {
         if (exists(a.getStudentId(), a.getCourseId())) {
             System.out.println("Duplicate application: Student already applied to this course.");
             return;
@@ -91,7 +91,7 @@ public class ApplicationDAO {
         }
     }
 
-    public List<Application> getAllApplications() throws SQLException {
+    public List<Application> getAllApplications() {
         List<Application> list = new ArrayList<>();
         String sql = "SELECT * FROM Application ORDER BY application_id";
         try (
@@ -135,7 +135,7 @@ public class ApplicationDAO {
         return getApplicationsBy("course_id", cid);
     }
 
-    public List<Application> getApplicationsByStatus(String status) throws SQLException {
+    public List<Application> getApplicationsByStatus(String status) {
         List<Application> list = new ArrayList<>();
         String sql = "SELECT * FROM Application WHERE LOWER(status) = LOWER(?)";
         try (
@@ -154,7 +154,7 @@ public class ApplicationDAO {
         return list;
     }
 
-       public List<Application> getApplicationsByDate(Date date) throws SQLException {
+       public List<Application> getApplicationsByDate(Date date) {
         List<Application> list = new ArrayList<>();
         String sql = "SELECT * FROM Application WHERE TRUNC(application_date) = ?";
         try (
@@ -179,7 +179,7 @@ public class ApplicationDAO {
         }
         return list;
     }
-       private List<Application> getApplicationsBy(String column, Object value) throws SQLException {
+       private List<Application> getApplicationsBy(String column, Object value) {
            List<Application> list = new ArrayList<>();
            String sql = "SELECT * FROM Application WHERE " + column + " = ?";
            try (
@@ -210,7 +210,7 @@ public class ApplicationDAO {
         deleteBy("course_id", cid);
     }
 
-    public void deleteApplicationByStatus(String status) throws SQLException {
+    public void deleteApplicationByStatus(String status)  {
         String sql = "DELETE FROM Application WHERE LOWER(status) = LOWER(?)";
         try (
             Connection conn = DBConnection.getConnection();
@@ -226,7 +226,7 @@ public class ApplicationDAO {
     }
 
 
-    public void deleteApplicationByDate(Date date) throws SQLException {
+    public void deleteApplicationByDate(Date date)  {
     	String sql = "DELETE FROM Application WHERE TRUNC(application_date) = ?";
         try (
             Connection conn = DBConnection.getConnection();
@@ -243,7 +243,7 @@ public class ApplicationDAO {
 
   
 
-    private void deleteBy(String column, Object value) throws SQLException {
+    private void deleteBy(String column, Object value)  {
         String sql = "DELETE FROM Application WHERE " + column + " = ?";
         try (
             Connection conn = DBConnection.getConnection();
@@ -272,7 +272,7 @@ public class ApplicationDAO {
         );
     }
     
-    public void deleteApplication(int id) throws SQLException {
+    public void deleteApplication(int id)  {
         String sql = "DELETE FROM Application WHERE application_id = ?";
         try (
             Connection conn = DBConnection.getConnection();
@@ -287,7 +287,7 @@ public class ApplicationDAO {
         }
     }
     
-    public void deleteAllApplications() throws SQLException {
+    public void deleteAllApplications()  {
         String sql = "DELETE FROM Application";
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
